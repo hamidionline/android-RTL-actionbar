@@ -18,13 +18,12 @@ package com.markupartist.android.widget;
 
 import java.util.LinkedList;
 
-import com.markupartist.android.widget.actionbar.R;
-
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,7 +35,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.markupartist.android.widget.actionbar.R;
+
 public class ActionBar extends RelativeLayout implements OnClickListener {
+
+	private Direction mActionBarDirection = Direction.LEFT_TO_RIGHT;
 
 	private LayoutInflater mInflater;
 	private RelativeLayout mBarView;
@@ -52,9 +55,30 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 	public ActionBar(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ActionBar);
+
+		int direction = a.getInteger(R.styleable.ActionBar_direction, 0);
+		mActionBarDirection = direction == 0 ? Direction.LEFT_TO_RIGHT : Direction.RIGHT_TO_LEFT;
+
+		CharSequence title = a.getString(R.styleable.ActionBar_title);
+		if (title != null) {
+			setTitle(title);
+		}
+
+		a.recycle();
+
+		initView(context);
+	}
+
+	private void initView(Context context) {
 		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar, null);
+		if (mActionBarDirection == Direction.LEFT_TO_RIGHT) {
+			mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar, null);
+		} else {
+			mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar_rtl, null);
+		}
+
 		addView(mBarView);
 
 		mLogoView = (ImageView) mBarView.findViewById(R.id.actionbar_home_logo);
@@ -67,12 +91,6 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 
 		mProgress = (ProgressBar) mBarView.findViewById(R.id.actionbar_progress);
 
-		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ActionBar);
-		CharSequence title = a.getString(R.styleable.ActionBar_title);
-		if (title != null) {
-			setTitle(title);
-		}
-		a.recycle();
 	}
 
 	public void setHomeAction(Action action) {
@@ -139,6 +157,10 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 	 */
 	public int getProgressBarVisibility() {
 		return mProgress.getVisibility();
+	}
+
+	public Direction getActionBarDirection() {
+		return mActionBarDirection;
 	}
 
 	/**
@@ -307,6 +329,14 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 			}
 		}
 	}
+
+	/*
+	 * the direction of actionbar either LEFT_TO_RIGHT(LTR) or
+	 * RIGHT_TO_LEFT(RTL)
+	 */
+	public enum Direction {
+		RIGHT_TO_LEFT, LEFT_TO_RIGHT
+	};
 
 	/*
 	 * public static abstract class SearchAction extends AbstractAction { public

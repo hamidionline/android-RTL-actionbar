@@ -14,7 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class HomeActivity extends Activity implements OnClickListener {
+public class RtlHomeActivity extends Activity implements OnClickListener {
 
 	ActionBar mActionbar;
 
@@ -33,12 +33,12 @@ public class HomeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.main_rtl);
 
 		mActionbar = (ActionBar) findViewById(R.id.actionbar);
-		// actionBar.setHomeAction(new IntentAction(this, createIntent(this),
-		// R.drawable.ic_title_home_demo));
-		mActionbar.setTitle("Home");
+		mActionbar.setHomeAction(new IntentAction(this, HomeActivity.createIntent(this), R.drawable.ic_title_home_default));
+		mActionbar.setDisplayHomeAsUpEnabled(true);
+		mActionbar.setTitle("سلام");
 
 		shareAction = new IntentAction(this, createShareIntent(), R.drawable.ic_title_share_default);
 		mActionbar.addAction(shareAction);
@@ -60,7 +60,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 		addAction.setOnClickListener(this);
 		removeAction.setOnClickListener(this);
 		removeShareAction.setOnClickListener(this);
-		switchDirection.setOnClickListener(this);
+		switchDirection.setVisibility(View.GONE);
 
 	}
 
@@ -80,7 +80,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 			mActionbar.addAction(new Action() {
 				@Override
 				public void performAction(View view) {
-					Toast.makeText(HomeActivity.this, "Added action.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(RtlHomeActivity.this, "Added action.", Toast.LENGTH_SHORT).show();
 				}
 
 				@Override
@@ -96,9 +96,9 @@ public class HomeActivity extends Activity implements OnClickListener {
 			if (actionCount > 0) {
 				int removingItem = actionCount - 1;
 				mActionbar.removeActionAt(removingItem);
-				Toast.makeText(HomeActivity.this, "Removed action " + removingItem, Toast.LENGTH_SHORT).show();
+				Toast.makeText(RtlHomeActivity.this, "Removed action " + removingItem, Toast.LENGTH_SHORT).show();
 			} else {
-				Toast.makeText(HomeActivity.this, "No More action.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(RtlHomeActivity.this, "No More action.", Toast.LENGTH_SHORT).show();
 			}
 			return;
 		}
@@ -114,15 +114,15 @@ public class HomeActivity extends Activity implements OnClickListener {
 		}
 
 		if (button == switchDirection) {
-			Intent intent = new Intent(this, RtlHomeActivity.class);
-			startActivity(intent);
+
+			
 			return;
 		}
 
 	}
 
 	public static Intent createIntent(Context context) {
-		Intent i = new Intent(context, HomeActivity.class);
+		Intent i = new Intent(context, RtlHomeActivity.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		return i;
 	}

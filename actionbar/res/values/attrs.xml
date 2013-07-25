@@ -19,6 +19,10 @@
 
     <declare-styleable name="ActionBar">
         <attr name="title" format="string" localization="suggested" />
+        <attr name="direction" format="integer" >
+            <enum name="left_to_right" value="0"/> 
+            <enum name="right_to_left" value="1"/> 
+        </attr>
     </declare-styleable>
 
 </resources>
