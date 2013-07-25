@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,7 +57,13 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ActionBar);
 
 		int direction = a.getInteger(R.styleable.ActionBar_direction, 0);
-		mActionBarDirection = direction == 0 ? Direction.LEFT_TO_RIGHT : Direction.RIGHT_TO_LEFT;
+
+		if (direction == 0)
+			mActionBarDirection = Direction.LEFT_TO_RIGHT;
+		if (direction == 1)
+			mActionBarDirection = Direction.RIGHT_TO_LEFT;
+		if (direction == 2)
+			mActionBarDirection = Direction.PURE_RIGHT_TO_LEFT;
 
 		CharSequence title = a.getString(R.styleable.ActionBar_title);
 		if (title != null) {
@@ -75,8 +80,10 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 
 		if (mActionBarDirection == Direction.LEFT_TO_RIGHT) {
 			mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar, null);
-		} else {
-			mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar_rtl, null);
+		} else if (mActionBarDirection == Direction.RIGHT_TO_LEFT){
+			mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar_simple_rtl, null);
+		} else if (mActionBarDirection == Direction.PURE_RIGHT_TO_LEFT){
+			mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar_pure_rtl, null);
 		}
 
 		addView(mBarView);
@@ -335,7 +342,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 	 * RIGHT_TO_LEFT(RTL)
 	 */
 	public enum Direction {
-		RIGHT_TO_LEFT, LEFT_TO_RIGHT
+		LEFT_TO_RIGHT, RIGHT_TO_LEFT, PURE_RIGHT_TO_LEFT
 	};
 
 	/*

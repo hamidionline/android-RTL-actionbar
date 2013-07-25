@@ -56,11 +56,6 @@
                 android:layout_height="wrap_content"
                 android:text="Remove share action" />
 
-            <Button
-                android:id="@+id/switche_direction"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RTL Actionbar" />
         </LinearLayout>
     </ScrollView>
 

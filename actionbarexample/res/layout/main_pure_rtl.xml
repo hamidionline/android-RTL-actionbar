@@ -7,7 +7,8 @@
 
     <com.markupartist.android.widget.ActionBar
         android:id="@+id/actionbar"
-        style="@style/ActionBar" />
+        style="@style/ActionBar"
+        app:direction="pure_right_to_left" />
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -54,18 +55,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Remove share action" />
-
-            <Button
-                android:id="@+id/switche_direction_rtl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Right to left Actionbar" />
-
-            <Button
-                android:id="@+id/switche_direction_pure_rtl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pure right to left Actionbar" />
         </LinearLayout>
     </ScrollView>
 

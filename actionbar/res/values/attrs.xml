@@ -22,6 +22,7 @@
         <attr name="direction" format="integer" >
             <enum name="left_to_right" value="0"/> 
             <enum name="right_to_left" value="1"/> 
+            <enum name="pure_right_to_left" value="2"/> 
         </attr>
     </declare-styleable>
 

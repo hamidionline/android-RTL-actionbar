@@ -24,7 +24,6 @@ public class RtlHomeActivity extends Activity implements OnClickListener {
 	Button removeActions;
 	Button removeAction;
 	Button removeShareAction;
-	Button switchDirection;
 
 	Action shareAction;
 	Action otherAction;
@@ -52,7 +51,6 @@ public class RtlHomeActivity extends Activity implements OnClickListener {
 		addAction = (Button) findViewById(R.id.add_action);
 		removeAction = (Button) findViewById(R.id.remove_action);
 		removeShareAction = (Button) findViewById(R.id.remove_share_action);
-		switchDirection = (Button) findViewById(R.id.switche_direction);
 
 		startProgress.setOnClickListener(this);
 		stopProgress.setOnClickListener(this);
@@ -60,7 +58,6 @@ public class RtlHomeActivity extends Activity implements OnClickListener {
 		addAction.setOnClickListener(this);
 		removeAction.setOnClickListener(this);
 		removeShareAction.setOnClickListener(this);
-		switchDirection.setVisibility(View.GONE);
 
 	}
 
@@ -110,12 +107,6 @@ public class RtlHomeActivity extends Activity implements OnClickListener {
 
 		if (button == removeShareAction) {
 			mActionbar.removeAction(shareAction);
-			return;
-		}
-
-		if (button == switchDirection) {
-
-			
 			return;
 		}
 
