@@ -20,8 +20,10 @@ Need icons to your action bar? Olof Brickarp has ported some of [Androids native
         />
 
 The use of `app:title` is optional, it's also possible to assign the title using the `setTitle` programmatically on the `ActionBar`. To be able to use the more convenient `app:title` the application namespace must be included in the same manner as the android namespace is. Please refer to the layout other.xml in the example project for a full example. Again, note that it's the application namespace and *not* the actionbar namespace that must be referred like `xmlns:app="http://schemas.android.com/apk/res/you.application.package.here"`.
-If you need a right to left action bar, you can simply add `app:direction` to set action bar direction. direction is optional and it's default value is `left_to_right`.
+If you need a right to left action bar, you can simply add `app:direction` to set action bar direction.it can be `pure_right_to_left` or `right_to_left` or `left_to_right direction` is optional and it's default value is `left_to_right`.
 
+![right_to_left](https://raw.github.com/h-r/android-actionbar/master/images/rtl.png)
+![pure_right_to_left](https://raw.github.com/h-r/android-actionbar/master/images/pure_rtl.png)
 
 ### In your activity
 
