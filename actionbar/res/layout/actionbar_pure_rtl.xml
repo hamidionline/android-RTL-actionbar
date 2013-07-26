@@ -48,14 +48,15 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1"
+             >
 
             <com.markupartist.android.widget.ScrollingTextView
                 android:id="@+id/actionbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/actionbar_home_box"
                 android:ellipsize="marquee"
                 android:lines="1"
                 android:marqueeRepeatLimit="marquee_forever"
@@ -65,44 +66,46 @@
                 android:textColor="@color/actionbar_title"
                 android:textSize="16dp"
                 android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/actionbar_height"
-            android:background="@color/actionbar_separator"
-            android:paddingLeft="1dp"
-            android:layout_marginRight="-13dp" >
-
-            <ImageView
-                android:id="@+id/actionbar_home_logo"
-                style="@style/ActionBarHomeLogo"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/actionbar_height"
-                android:background="@drawable/actionbar_btn"
-                android:visibility="gone" />
 
             <RelativeLayout
-                android:id="@+id/actionbar_home_bg"
+                android:id="@+id/actionbar_home_box"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/actionbar_height"
-                android:visibility="gone" >
+                android:layout_alignParentRight="true"
+                android:background="@color/actionbar_separator"
+                android:paddingLeft="1dp" >
 
-                <!-- TODO: Make configurable. -->
+                <ImageView
+                    android:id="@+id/actionbar_home_logo"
+                    style="@style/ActionBarHomeLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/actionbar_height"
+                    android:background="@drawable/actionbar_btn"
+                    android:visibility="gone" />
 
-                <ImageButton
-                    android:id="@+id/actionbar_home_btn"
-                    style="@style/ActionBarHomeItem"
-                    android:background="@drawable/actionbar_btn" />
+                <RelativeLayout
+                    android:id="@+id/actionbar_home_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/actionbar_height"
+                    android:visibility="gone" >
+
+                    <!-- TODO: Make configurable. -->
+
+                    <ImageButton
+                        android:id="@+id/actionbar_home_btn"
+                        style="@style/ActionBarHomeItem"
+                        android:layout_marginRight="0dp"
+                        android:background="@drawable/actionbar_btn" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/actionbar_home_is_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/actionbar_back_indicator_rtl"
+                    android:visibility="gone" />
             </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/actionbar_home_is_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/actionbar_back_indicator"
-                android:visibility="gone" />
         </RelativeLayout>
     </LinearLayout>
 
