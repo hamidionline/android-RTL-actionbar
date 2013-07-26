@@ -14,7 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="@dimen/actionbar_height"
@@ -24,8 +24,6 @@
         android:id="@+id/actionbar_home"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/actionbar_height"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
         android:orientation="horizontal"
         android:visibility="visible" >
 
@@ -66,8 +64,6 @@
             android:padding="0dp"
             android:visibility="gone" />
 
-        <!--  -->
-
         <LinearLayout
             android:id="@+id/actionbar_actions"
             android:layout_width="wrap_content"
@@ -94,7 +90,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:indeterminateOnly="true"
-                android:paddingRight="7dp"
+                android:layout_marginRight="7dp"
                 android:visibility="gone" />
 
             <com.markupartist.android.widget.ScrollingTextView
@@ -115,4 +111,4 @@
         </RelativeLayout>
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

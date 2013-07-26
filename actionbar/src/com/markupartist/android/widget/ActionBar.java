@@ -41,7 +41,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 	private Direction mActionBarDirection = Direction.LEFT_TO_RIGHT;
 
 	private LayoutInflater mInflater;
-	private RelativeLayout mBarView;
+	private LinearLayout mBarView;
 	private ImageView mLogoView;
 	private View mBackIndicator;
 	// private View mHomeView;
@@ -55,35 +55,37 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 		super(context, attrs);
 
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ActionBar);
-
 		int direction = a.getInteger(R.styleable.ActionBar_direction, 0);
-
+		
 		if (direction == 0)
 			mActionBarDirection = Direction.LEFT_TO_RIGHT;
 		if (direction == 1)
 			mActionBarDirection = Direction.RIGHT_TO_LEFT;
 		if (direction == 2)
 			mActionBarDirection = Direction.PURE_RIGHT_TO_LEFT;
-
+		
 		CharSequence title = a.getString(R.styleable.ActionBar_title);
-		if (title != null) {
-			setTitle(title);
-		}
 
 		a.recycle();
 
 		initView(context);
+		
+		
+		if (title != null) {
+			setTitle(title);
+		}
+		
 	}
 
 	private void initView(Context context) {
 		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		if (mActionBarDirection == Direction.LEFT_TO_RIGHT) {
-			mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar, null);
+			mBarView = (LinearLayout) mInflater.inflate(R.layout.actionbar, null);
 		} else if (mActionBarDirection == Direction.RIGHT_TO_LEFT){
-			mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar_simple_rtl, null);
+			mBarView = (LinearLayout) mInflater.inflate(R.layout.actionbar_simple_rtl, null);
 		} else if (mActionBarDirection == Direction.PURE_RIGHT_TO_LEFT){
-			mBarView = (RelativeLayout) mInflater.inflate(R.layout.actionbar_pure_rtl, null);
+			mBarView = (LinearLayout) mInflater.inflate(R.layout.actionbar_pure_rtl, null);
 		}
 
 		addView(mBarView);
