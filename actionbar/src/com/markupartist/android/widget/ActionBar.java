@@ -16,6 +16,7 @@
 
 package com.markupartist.android.widget;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import android.content.ActivityNotFoundException;
@@ -34,6 +35,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.markupartist.android.widget.ComboBoxView.onItemClickedListener;
 import com.markupartist.android.widget.actionbar.R;
 
 public class ActionBar extends RelativeLayout implements OnClickListener {
@@ -49,11 +51,12 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 	private LinearLayout mActionsView;
 	private ImageButton mHomeBtn;
 	private RelativeLayout mHomeLayout;
+	private ComboBoxView mNavigationBar;
 	private ProgressBar mProgress;
 
 	public ActionBar(Context context, AttributeSet attrs) {
 		super(context, attrs);
-
+		
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ActionBar);
 		int direction = a.getInteger(R.styleable.ActionBar_direction, 0);
 		
@@ -94,12 +97,27 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 		mHomeLayout = (RelativeLayout) mBarView.findViewById(R.id.actionbar_home_bg);
 		mHomeBtn = (ImageButton) mBarView.findViewById(R.id.actionbar_home_btn);
 		mBackIndicator = mBarView.findViewById(R.id.actionbar_home_is_back);
-
+		mNavigationBar = (ComboBoxView) mBarView.findViewById(R.id.actionbar_navigationbar);
 		mTitleView = (TextView) mBarView.findViewById(R.id.actionbar_title);
 		mActionsView = (LinearLayout) mBarView.findViewById(R.id.actionbar_actions);
 
 		mProgress = (ProgressBar) mBarView.findViewById(R.id.actionbar_progress);
 
+	}
+
+
+
+	public void setNavigationEnabled(boolean show){
+		if(show){
+			mNavigationBar.setVisibility(View.VISIBLE);
+		}else{
+			mNavigationBar.setVisibility(View.GONE);
+		}
+	}
+	
+	public void setNavigationItems(ArrayList<String> items,onItemClickedListener listener){
+		mNavigationBar.setAdapter(items);
+		mNavigationBar.setOnItemClickListener(listener);
 	}
 
 	public void setHomeAction(Action action) {
@@ -108,11 +126,11 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 		mHomeBtn.setImageResource(action.getDrawable());
 		mHomeLayout.setVisibility(View.VISIBLE);
 	}
-
+	
 	public void clearHomeAction() {
 		mHomeLayout.setVisibility(View.GONE);
 	}
-
+	
 	/**
 	 * Shows the provided logo to the left in the action bar.
 	 * 
@@ -128,7 +146,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 		mLogoView.setVisibility(View.VISIBLE);
 		mHomeLayout.setVisibility(View.GONE);
 	}
-
+	
 	/*
 	 * Emulating Honeycomb, setdisplayHomeAsUpEnabled takes a boolean and
 	 * toggles whether the "home" view should have a little triangle indicating

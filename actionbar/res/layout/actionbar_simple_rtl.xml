@@ -68,20 +68,27 @@
             android:id="@+id/actionbar_actions"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/actionbar_height"
-            android:background="@color/actionbar_separator" 
-            android:paddingRight="1dp"/>
+            android:background="@color/actionbar_separator"
+            android:orientation="horizontal"
+            android:paddingRight="1dp" />
 
         <ProgressBar
             android:id="@+id/actionbar_progress"
             style="@style/ActionBarProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateOnly="true"
             android:layout_marginLeft="7dp"
+            android:indeterminateOnly="true"
+            android:visibility="gone" />
+
+        <com.markupartist.android.widget.ComboBoxView
+            android:id="@+id/actionbar_navigationbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:visibility="gone" />
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1" >
 
@@ -91,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:ellipsize="marquee"
+                android:ellipsize="end"
                 android:lines="1"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:paddingLeft="10dp"
